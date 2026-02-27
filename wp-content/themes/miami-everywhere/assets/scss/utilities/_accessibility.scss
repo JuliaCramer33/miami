@@ -1,0 +1,98 @@
+/**
+ * Utility: Accessibility
+ *
+ * Styles for accessibility features like screen reader text and focus outlines.
+ *
+ * @package MiamiEverywhere
+ */
+
+// Visually Hidden (replaces .sr-only)
+.visually-hidden {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+
+	// Add focusable styles similar to .screen-reader-text:focus
+	&:focus {
+		background-color: var(--color-neutral-100);
+		border-radius: var(--radius-sm);
+		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+		clip: auto !important;
+		clip-path: none;
+		color: var(--color-neutral-800);
+		display: block;
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-bold);
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: var(--spacing-4) var(--spacing-6);
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: var(--z-50);
+	}
+}
+
+// Not Visually Hidden
+.not-visually-hidden {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	padding: 0;
+	position: static;
+	white-space: normal;
+	width: auto;
+}
+
+// Focus Visible
+// REMOVED - Part of base focus management in base/_a11y.scss
+
+// Focus Not Visible
+// REMOVED - Part of base focus management in base/_a11y.scss
+
+// Skip Link
+.skip-link {
+	background: var(--color-primary);
+	color: var(--color-white);
+	left: 0;
+	padding: 8px;
+	position: absolute;
+	top: -40px; // Start offscreen
+	z-index: 100;
+
+	&:focus {
+		top: 0;
+	}
+}
+
+// ARIA Hidden
+// REMOVED - Handled by base/_a11y.scss
+
+// ARIA Live Regions
+// REMOVED - Handled by base/_a11y.scss if needed, or use .visually-hidden class
+
+// Reduced Motion
+// REMOVED - Handled by base/_a11y.scss
+
+// High Contrast Mode
+@media (forced-colors: active) {
+	* {
+		border-color: ButtonText;
+	}
+}
+
+// Print
+@media print {
+	.no-print {
+		display: none !important;
+	}
+}

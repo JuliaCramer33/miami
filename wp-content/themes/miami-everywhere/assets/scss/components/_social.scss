@@ -1,0 +1,85 @@
+/**
+ * Social Menu
+ *
+ * Reusable social menu component used in footer and mobile navigation.
+ *
+ * @package MiamiEverywhere
+ */
+
+// Social Menu Base
+.social-menu {
+	display: flex;
+	flex-direction: row;
+	gap: var(--spacing-4);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	&__item {
+		margin: 0;
+	}
+
+	&__link {
+		align-items: center;
+		border-radius: 50%;
+		color: var(--color-white);
+		display: flex;
+		height: 40px;
+		justify-content: center;
+		text-decoration: none;
+		transition: all 0.3s ease;
+		width: 40px;
+
+		&:hover,
+		&:focus {
+			background-color: rgba(var(--color-white-rgb, 255, 255, 255), 0.2);
+			color: var(--color-white);
+			opacity: 0.8;
+			text-decoration: none;
+			transform: scale(1.1);
+		}
+	}
+
+	&__icon {
+		height: 20px;
+		width: 20px;
+	}
+}
+
+// Social Menu Variants
+.social-menu--light {
+	.social-menu__link {
+		background-color: var(--color-neutral-100);
+		color: var(--color-text);
+
+		&:hover,
+		&:focus {
+			background-color: var(--color-neutral-200);
+			color: var(--color-text);
+			opacity: 0.8;
+			transform: scale(1.1);
+		}
+	}
+}
+
+// Mobile Navigation Social Menu
+@media (min-width: $breakpoint-sm) {
+	.mobile-nav-social {
+		.social-menu {
+			flex-direction: row;
+			gap: var(--spacing-4);
+		}
+
+		.social-menu__link {
+			background-color: transparent;
+			height: 40px;
+			justify-content: center;
+			padding: 0;
+			width: 40px;
+		}
+
+		.social-menu__icon {
+			margin-right: 0;
+		}
+	}
+}

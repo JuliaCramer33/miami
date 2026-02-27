@@ -1,0 +1,373 @@
+/**
+ * Base: Form Elements
+ *
+ * Base styles for form elements (inputs, buttons, select, textarea).
+ *
+ * @package MiamiEverywhere
+ */
+
+/* stylelint-disable stylistic/max-line-length */
+
+/* Form Elements */
+.form-group {
+	margin-bottom: var(--spacing-4);
+}
+
+.form-label {
+	color: var(--color-text);
+	display: block;
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-medium);
+	margin-bottom: var(--spacing-2);
+
+	&.required::after {
+		color: var(--color-error);
+		content: '*';
+		margin-left: var(--spacing-1);
+	}
+}
+
+/* Input Fields */
+.form-input {
+	background-color: var(--color-white);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius);
+	color: var(--color-text);
+	display: block;
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-normal);
+	padding: var(--spacing-2) var(--spacing-3);
+	transition:
+		border-color var(--transition-fast),
+		box-shadow var(--transition-fast);
+	width: 100%;
+
+	&:focus {
+		border-color: var(--color-primary);
+		box-shadow: 0 0 0 2px rgb(196 18 48 / 10%);
+		outline: none;
+	}
+
+	&::placeholder {
+		color: var(--color-neutral-400);
+	}
+
+	&:disabled {
+		background-color: var(--color-neutral-100);
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
+
+	&[readonly] {
+		background-color: var(--color-neutral-100);
+		cursor: default;
+	}
+
+	&.is-error {
+		border-color: var(--color-error);
+	}
+
+	&.is-success {
+		border-color: var(--color-success);
+	}
+}
+
+/* Textarea */
+.form-textarea {
+	background-color: var(--color-white);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius);
+	color: var(--color-text);
+	display: block;
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-normal);
+	min-height: 100px;
+	padding: var(--spacing-2) var(--spacing-3);
+	resize: vertical;
+	transition:
+		border-color var(--transition-fast),
+		box-shadow var(--transition-fast);
+	width: 100%;
+
+	&:focus {
+		border-color: var(--color-primary);
+		box-shadow: 0 0 0 2px rgb(196 18 48 / 10%);
+		outline: none;
+	}
+
+	&:disabled {
+		background-color: var(--color-neutral-100);
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
+
+	&[readonly] {
+		background-color: var(--color-neutral-100);
+		cursor: default;
+	}
+
+	&.is-error {
+		border-color: var(--color-error);
+	}
+
+	&.is-success {
+		border-color: var(--color-success);
+	}
+}
+
+/* Select */
+.form-select {
+	appearance: none;
+	background-color: var(--color-white);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+	background-position: right 0.5rem center;
+	background-repeat: no-repeat;
+	background-size: 1.5em 1.5em;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius);
+	color: var(--color-text);
+	display: block;
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-normal);
+	padding: var(--spacing-2) var(--spacing-3);
+	padding-right: 2.5rem;
+	transition:
+		border-color var(--transition-fast),
+		box-shadow var(--transition-fast);
+	width: 100%;
+
+	&:focus {
+		border-color: var(--color-primary);
+		box-shadow: 0 0 0 2px rgb(196 18 48 / 10%);
+		outline: none;
+	}
+
+	&:disabled {
+		background-color: var(--color-neutral-100);
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
+
+	&[readonly] {
+		background-color: var(--color-neutral-100);
+		cursor: default;
+	}
+
+	&.is-error {
+		border-color: var(--color-error);
+	}
+
+	&.is-success {
+		border-color: var(--color-success);
+	}
+}
+
+/* Checkbox and Radio */
+.form-checkbox,
+.form-radio {
+	align-items: center;
+	cursor: pointer;
+	display: inline-flex;
+	margin-right: var(--spacing-4);
+
+	input {
+		cursor: pointer;
+		margin-right: var(--spacing-2);
+	}
+}
+
+/* Submit Button */
+.form-submit {
+	align-items: center;
+	background-color: var(--color-primary);
+	border: 1px solid transparent;
+	border-radius: var(--radius);
+	color: var(--color-white);
+	cursor: pointer;
+	display: inline-flex;
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-medium);
+	justify-content: center;
+	line-height: var(--line-height-normal);
+	padding: var(--spacing-2) var(--spacing-4);
+	transition:
+		background-color var(--transition-fast),
+		border-color var(--transition-fast);
+
+	&:hover {
+		background-color: var(--color-accent);
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 2px rgb(196 18 48 / 10%);
+		outline: none;
+	}
+}
+
+/* Error and Success States */
+.form-error {
+	color: var(--color-error);
+	font-size: var(--font-size-sm);
+	margin-top: var(--spacing-1);
+}
+
+.form-success {
+	color: var(--color-success);
+	font-size: var(--font-size-sm);
+	margin-top: var(--spacing-1);
+}
+
+/* Common styles for text-based inputs, select, textarea */
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='number'],
+input[type='search'],
+input[type='tel'],
+input[type='url'],
+select,
+textarea {
+	background-color: var(--color-background);
+	border: 1px solid var(--color-border-dark); // Keep 1px or use variable
+	border-radius: var(--radius);
+	color: var(--color-text);
+	display: block;
+	font-family: inherit; // Inherit from body
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-normal);
+	padding: var(--spacing-2) var(--spacing-3);
+	transition:
+		border-color var(--transition-fast),
+		box-shadow var(--transition-fast);
+	width: 100%;
+
+	&:focus {
+		border-color: var(--color-primary);
+		// Use Sass's rgba() or ensure color is passed correctly if using CSS rgba()
+		box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.2);
+		outline: none;
+	}
+
+	&::placeholder {
+		color: var(--color-text-muted);
+		opacity: 1; // Firefox fix
+	}
+
+	&:disabled,
+	&[readonly] {
+		background-color: var(--color-neutral-100);
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
+}
+
+/* Remove number spinner for Webkit browsers */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	appearance: none;
+	margin: 0;
+}
+
+/* Remove number spinner for Firefox */
+input[type='number'] {
+	appearance: textfield; // Firefox
+}
+
+/* Select specific styles */
+select {
+	appearance: none; // Remove default dropdown arrow
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='#{var(--color-text-muted)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e"); // Used text-muted color
+	background-position: right var(--spacing-2) center;
+	background-repeat: no-repeat;
+	background-size: 1.5em 1.5em;
+	padding-right: var(--spacing-10); // Make room for arrow
+}
+
+/* Textarea specific styles */
+textarea {
+	min-height: 100px;
+	resize: vertical;
+}
+
+/* File input (basic reset) */
+input[type='file'] {
+	display: block;
+	width: 100%;
+}
+
+/* Range input (basic reset) */
+input[type='range'] {
+	display: block;
+	width: 100%;
+}
+
+/* Checkbox and Radio buttons (basic reset, requires more styling for custom appearance) */
+input[type='checkbox'],
+input[type='radio'] {
+	margin-right: var(--spacing-2); // Add space between control and label
+	padding: 0;
+	vertical-align: middle;
+}
+
+label {
+	display: inline-block;
+	font-weight: var(--font-weight-medium);
+	margin-bottom: var(--spacing-2);
+}
+
+/* Button base styles (also see components/_button.scss for variations) */
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+	background-color: var(--color-primary);
+	border: 1px solid transparent;
+	border-radius: var(--radius);
+	color: var(--color-white);
+	cursor: pointer;
+	display: inline-block;
+	font-family: inherit;
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-medium);
+	line-height: var(--line-height-normal);
+	padding: var(--spacing-2) var(--spacing-4);
+	text-align: center;
+	transition:
+		background-color var(--transition-fast),
+		border-color var(--transition-fast),
+		color var(--transition-fast),
+		box-shadow var(--transition-fast);
+	user-select: none;
+	vertical-align: middle;
+
+	&:focus {
+		box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.2);
+		outline: none;
+	}
+
+	&:hover {
+		background-color: var(--color-accent);
+		color: var(--color-white);
+	}
+
+	&:disabled {
+		background-color: var(--color-neutral-300);
+		border-color: var(--color-neutral-300);
+		color: var(--color-neutral-500);
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
+}
+
+/* Fieldsets */
+fieldset {
+	border: 1px solid var(--color-border);
+	margin-bottom: var(--spacing-6);
+	padding: var(--spacing-4) var(--spacing-6);
+}
+
+legend {
+	color: var(--color-text);
+	font-weight: var(--font-weight-bold);
+	padding: 0 var(--spacing-2);
+}

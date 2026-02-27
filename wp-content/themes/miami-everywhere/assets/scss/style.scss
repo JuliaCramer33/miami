@@ -1,0 +1,30 @@
+/* stylelint-disable stylistic/max-line-length */
+
+/**
+ * Main Stylesheet
+ *
+ * Using @import system.
+ */
+
+// --- @import RULES ---
+// MUST import variables first!
+@import 'settings/index'; // Correct path to variables
+
+// Import Vendor CSS (e.g., Splide)
+@import '../../node_modules/@splidejs/splide/dist/css/splide.min.css'; // Relative path
+
+// Utilities Layer (Helper classes & Mixins)
+@import 'utilities/index'; // Import the index file for the layer
+@import 'utilities/animations'; // Import animation utilities
+
+// Base Layer (HTML element styles, body defaults)
+@import 'base/index'; // Import the index file for the layer
+
+// Layout Layer (Containers, grids, header, footer structure)
+@import 'layout/index'; // Import the index file for the layer
+
+// Components Layer (Individual UI components: buttons, cards, modal, etc.)
+@import 'components/index'; // Import the index file for the layer
+
+// Blocks Layer (Specific styles for Gutenberg blocks)
+@import 'blocks/index'; // Import the index file for the layer

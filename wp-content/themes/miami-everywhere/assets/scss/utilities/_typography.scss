@@ -1,0 +1,184 @@
+/**
+ * Utility: Typography
+ *
+ * Provides utility classes for text alignment, font size, weight, etc.
+ *
+ * @package MiamiEverywhere
+ */
+
+/* stylelint-disable-next-line stylistic/max-line-length */
+
+// Font Sizes
+$font-sizes: (
+	'xs': $font-size-xs, // 0.75rem (12px)
+	'sm': $font-size-sm, // 0.875rem (14px)
+	'base': $font-size-base, // 1rem (16px)
+	'lg': $font-size-lg, // 1.125rem (18px)
+	'xl': $font-size-xl, // 1.25rem (20px)
+	'2xl': $font-size-2xl, // 1.5rem (24px)
+	'3xl': $font-size-3xl, // 1.875rem (30px)
+	'4xl': $font-size-4xl, // 2.25rem (36px)
+	'5xl': $font-size-5xl, // 3rem (48px)
+	'6xl': $font-size-6xl, // 3.75rem (60px)
+	'7xl': $font-size-7xl, // 4.5rem (72px)
+	'8xl': $font-size-8xl, // 6rem (96px)
+);
+
+// Line Heights
+$line-heights: (
+	'tight': $line-height-tight,
+	'normal': $line-height-normal,
+	'relaxed': $line-height-relaxed,
+	'loose': $line-height-loose,
+);
+
+// Font Weights
+$font-weights: (
+	'light': $font-weight-light,
+	'normal': $font-weight-normal,
+	'medium': $font-weight-medium,
+	'semibold': $font-weight-semibold,
+	'bold': $font-weight-bold,
+	'extrabold': $font-weight-extrabold,
+	'black': $font-weight-black
+);
+
+// Font Sizes
+@each $name, $value in $font-sizes {
+	.text-#{$name} {
+		font-size: $value;
+	}
+}
+
+// Line Heights
+@each $name, $scss_variable_value in $line-heights {
+	.leading-#{$name} {
+		line-height: var(--line-height-#{$name});
+	}
+}
+
+// Font Weights
+@each $name, $value in $font-weights {
+	.font-#{$name} {
+		font-weight: $value;
+	}
+}
+
+// Text Alignment
+.text-left {
+	text-align: left;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-justify {
+	text-align: justify;
+}
+
+// Text Transform
+.uppercase {
+	text-transform: uppercase;
+}
+
+.lowercase {
+	text-transform: lowercase;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+.normal-case {
+	text-transform: none;
+}
+
+// Text Decoration
+.underline {
+	text-decoration: underline;
+}
+
+.line-through {
+	text-decoration: line-through;
+}
+
+.no-underline {
+	text-decoration: none;
+}
+
+// Font Style
+.italic {
+	font-style: italic;
+}
+
+.not-italic {
+	font-style: normal;
+}
+
+// Font Family
+.font-sans {
+	font-family: $font-family-base;
+}
+
+.font-heading {
+	font-family: $font-family-heading;
+}
+
+.font-freight-text {
+	font-family: $font-family-freight-text;
+}
+
+.font-serif {
+	font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.font-mono {
+	font-family:
+		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+		monospace;
+}
+
+// Responsive Utilities Breakpoint Map (Import or Define)
+// Assuming $responsive-breakpoints is available from an
+// imported file like _variables or defined globally
+// If not, uncomment and use the definition below:
+
+$responsive-breakpoints: (
+	sm: $breakpoint-sm,
+	md: $breakpoint-md,
+	lg: $breakpoint-lg,
+	xl: $breakpoint-xl,
+	xxl: $breakpoint-2xl
+);
+
+// Generate Responsive Typography Utilities
+@each $prefix, $breakpoint in $responsive-breakpoints {
+	@media (min-width: $breakpoint) {
+
+		// Responsive Font Size
+		@each $name, $value in $font-sizes {
+			.text-#{$prefix}-#{$name} {
+				font-size: $value !important;
+			}
+		}
+
+		// Responsive Text Alignment
+		.text-#{$prefix}-left {
+			text-align: left !important;
+		}
+		.text-#{$prefix}-center {
+			text-align: center !important;
+		}
+		.text-#{$prefix}-right {
+			text-align: right !important;
+		}
+		.text-#{$prefix}-justify {
+			text-align: justify !important;
+		}
+	}
+}

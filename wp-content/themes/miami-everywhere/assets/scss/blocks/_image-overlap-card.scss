@@ -1,0 +1,55 @@
+/**
+ * Block: Image Overlap Card (Custom ACF Block)
+ *
+ * Styles for the custom ACF block `acf/image-overlap-card`.
+ *
+ * @package MiamiEverywhere
+ */
+
+.image-overlap-card {
+
+	&__image-wrapper {
+		// Modern approach with aspect-ratio - aiming for a less tall image
+		aspect-ratio: 18 / 9; // Changed from 16 / 9. This is equivalent to 2 / 1.
+		max-height: 625px;   // Updated max-height
+		overflow: hidden;
+		position: relative;  // Needed for positioned child (img) and fallback
+		width: 100%;         // Ensure width is set for aspect-ratio to work
+		z-index: 1;
+
+		// Fallback for browsers that don't support aspect-ratio
+		@supports not (aspect-ratio: 18 / 9) { // Updated condition
+			height: 0;
+			padding-bottom: 50%; // (9 / 18 * 100%) for 18/9 or 2/1 ratio
+		}
+
+		img {
+			display: block;
+			// These ensure the image fills the wrapper, whether defined by
+			// aspect-ratio or padding-bottom hack
+			height: 100%;
+			left: 0;
+			object-fit: cover;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
+	}
+
+	&__content-wrapper {
+		position: relative;
+		z-index: 2;
+	}
+
+	&__text-box {
+		box-sizing: border-box;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 95%;
+
+		@media (min-width: $breakpoint-md) {
+			max-width: 85%;
+			padding: var(--spacing-6) var(--spacing-6);
+		}
+	}
+}

@@ -1,0 +1,176 @@
+/**
+ * Layout: Header
+ *
+ * Styles for the main site header and associated elements.
+ *
+ * @package MiamiEverywhere
+ */
+
+.site-header {
+	background-color: var(--color-primary);
+	box-shadow: $shadow;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: $z-index-header;
+
+	&__inner {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		margin: 0 auto;
+		padding-bottom: var(--spacing-5);
+		padding-top: var(--spacing-5);
+	}
+
+	&__logo {
+		margin-right: auto;
+
+		a:focus-visible {
+			border-radius: 2px;
+			outline: 2px solid var(--color-white);
+			outline-offset: 2px;
+		}
+	}
+
+	/* Mobile Menu Toggle */
+	&__nav-toggle {
+		background: none;
+		border: none;
+		color: var(--color-white);
+		cursor: pointer;
+		display: block;
+		height: 30px;
+		padding: var(--spacing-2);
+		position: relative;
+		width: 30px;
+
+		span {
+			background-color: var(--color-white);
+			display: block;
+			height: 2px;
+			left: 0;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			transition: all var(--transition-fast);
+			width: 24px;
+
+			&::before,
+			&::after {
+				background-color: var(--color-white);
+				content: '' '';
+				display: block;
+				height: 2px;
+				left: 0;
+				position: absolute;
+				transition: all var(--transition-fast);
+				width: 24px;
+			}
+
+			&::before {
+				top: -7px;
+			}
+
+			&::after {
+				bottom: -7px;
+			}
+		}
+
+		&.is-active {
+			span {
+				background-color: transparent;
+
+				&::before {
+					top: 0;
+					transform: rotate(45deg);
+				}
+
+				&::after {
+					bottom: 0;
+					transform: rotate(-45deg);
+				}
+			}
+		}
+	}
+}
+
+/* Tan Bar */
+.site-title {
+	background-color: var(--color-light-tan);
+	left: 0;
+	padding: var(--spacing-4) 0;
+	position: fixed;
+	right: 0;
+	top: 82px;
+	z-index: $z-index-below-header;
+}
+
+// Adjustments for WP Admin Bar
+body.admin-bar {
+	.site-header {
+		top: $wp-admin-bar-height-desktop;
+	}
+
+	.site-title {
+		// Combine admin bar height and fixed header height
+		top: calc(#{$wp-admin-bar-height-desktop} + #{$header-height-fixed});
+	}
+
+	// Apply sticky search adjustments directly within this block
+	.site-search {
+		&__sticky {
+			top: $wp-admin-bar-height-desktop;
+		}
+	}
+}
+
+// --- Mobile Admin Bar Override ---
+@media screen and (max-width: ($breakpoint-md - 1px)) {
+	body.admin-bar {
+		.site-header {
+			top: $wp-admin-bar-height-mobile;
+		}
+
+		.site-title {
+			// Combine admin bar height and fixed header height (mobile)
+			top: calc(#{$wp-admin-bar-height-mobile} + #{$header-height-fixed});
+		}
+
+		// Apply sticky search adjustments directly within this block
+		.site-search {
+			&__sticky {
+				top: $wp-admin-bar-height-mobile;
+			}
+		}
+	}
+}
+
+// --- Desktop Styles (Header becomes relative, Hide Mobile Toggle) ---
+@media (min-width: $breakpoint-lg) {
+	.site-header__nav-toggle {
+		display: none;
+	}
+
+	.site-header {
+		left: 0;
+		position: relative;
+		right: 0;
+		top: 0;
+	}
+
+	.site-title {
+		left: 0;
+		position: relative;
+		right: 0;
+		top: 0;
+	}
+
+	body.admin-bar {
+		.site-header,
+		.site-title {
+			top: 0;
+		}
+	}
+}

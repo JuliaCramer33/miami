@@ -1,0 +1,13 @@
+/**
+ * Base Index
+ *
+ * Imports all base SCSS files (reset, element defaults).
+ *
+ * @package MiamiEverywhere
+ */
+
+@import 'base'; // Global element styles
+@import 'typography'; // Base typography styles
+@import 'forms'; // Base form styles
+@import 'wordpress'; // WordPress core generated classes
+@import 'a11y'; // Accessibility helpers

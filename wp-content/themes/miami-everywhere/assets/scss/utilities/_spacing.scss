@@ -1,0 +1,242 @@
+/**
+ * Utility: Spacing
+ *
+ * Generates utility classes for margin
+ * and padding based on theme spacing variables.
+ *
+ * @package MiamiEverywhere
+ */
+
+// Spacing Scale
+$spacing-scale: (
+	'0': $spacing-0,   // 0px
+	'1': $spacing-1,   // 4px
+	'2': $spacing-2,   // 8px
+	'3': $spacing-3,   // 12px
+	'4': $spacing-4,   // 16px
+	'5': $spacing-5,   // 20px
+	'6': $spacing-6,   // 24px
+	'8': $spacing-8,   // 32px
+	'10': $spacing-10, // 40px
+	'12': $spacing-12, // 48px
+	'16': $spacing-16, // 64px
+	'20': $spacing-20, // 80px
+	'24': $spacing-24, // 96px
+	'32': $spacing-32, // 128px
+	'40': $spacing-40, // 160px
+	'48': $spacing-48, // 192px
+	'56': $spacing-56, // 224px
+	'64': $spacing-64  // 256px
+);
+
+// Margin Utilities
+@each $name, $value in $spacing-scale {
+	// All sides
+	.m-#{$name} {
+		margin: $value;
+	}
+
+	// Vertical axis
+	.my-#{$name} {
+		margin-bottom: $value;
+		margin-top: $value;
+	}
+
+	// Horizontal axis
+	.mx-#{$name} {
+		margin-left: $value;
+		margin-right: $value;
+	}
+
+	// Individual sides
+	.mt-#{$name} {
+		margin-top: $value;
+	}
+
+	.mr-#{$name} {
+		margin-right: $value;
+	}
+
+	.mb-#{$name} {
+		margin-bottom: $value;
+	}
+
+	.ml-#{$name} {
+		margin-left: $value;
+	}
+
+	// Negative margins
+	.-m-#{$name} {
+		margin: calc(#{$value} * -1);
+	}
+
+	.-mt-#{$name} {
+		margin-top: calc(#{$value} * -1);
+	}
+
+	.-mr-#{$name} {
+		margin-right: calc(#{$value} * -1);
+	}
+
+	.-mb-#{$name} {
+		margin-bottom: calc(#{$value} * -1);
+	}
+
+	.-ml-#{$name} {
+		margin-left: calc(#{$value} * -1);
+	}
+}
+
+// Padding Utilities
+@each $name, $value in $spacing-scale {
+	// All sides
+	.p-#{$name} {
+		padding: $value;
+	}
+
+	// Vertical axis
+	.py-#{$name} {
+		padding-bottom: $value;
+		padding-top: $value;
+	}
+
+	// Horizontal axis
+	.px-#{$name} {
+		padding-left: $value;
+		padding-right: $value;
+	}
+
+	// Individual sides
+	.pt-#{$name} {
+		padding-top: $value;
+	}
+
+	.pr-#{$name} {
+		padding-right: $value;
+	}
+
+	.pb-#{$name} {
+		padding-bottom: $value;
+	}
+
+	.pl-#{$name} {
+		padding-left: $value;
+	}
+}
+
+// Gap Utilities (for Flexbox and Grid)
+@each $name, $value in $spacing-scale {
+	.gap-#{$name} {
+		gap: $value;
+	}
+}
+
+// --- ADD ZERO OVERRIDES ---
+.m-0 {
+	margin: 0 !important;
+}
+
+.p-0 {
+	padding: 0 !important;
+}
+// --- END ZERO OVERRIDES ---
+
+// Responsive Utilities Breakpoint Map (Use xxl instead of 2xl for prefix)
+$responsive-breakpoints: (
+	sm: $breakpoint-sm,
+	md: $breakpoint-md,
+	lg: $breakpoint-lg,
+	xl: $breakpoint-xl,
+	xxl: $breakpoint-2xl // Changed key from '2xl' to 'xxl'
+);
+
+// Generate Responsive Spacing Utilities
+@each $prefix, $breakpoint in $responsive-breakpoints {
+	@media (min-width: $breakpoint) {
+
+		// Responsive Margin
+		@each $name, $value in $spacing-scale {
+			.m-#{$prefix}-#{$name} {
+				margin: $value !important;
+			}
+			.my-#{$prefix}-#{$name} {
+				margin-bottom: $value !important; // Alphabetical order
+				margin-top: $value !important;
+			}
+			.mx-#{$prefix}-#{$name} {
+				margin-left: $value !important;
+				margin-right: $value !important;
+			}
+			.mt-#{$prefix}-#{$name} {
+				margin-top: $value !important;
+			}
+			.mr-#{$prefix}-#{$name} {
+				margin-right: $value !important;
+			}
+			.mb-#{$prefix}-#{$name} {
+				margin-bottom: $value !important;
+			}
+			.ml-#{$prefix}-#{$name} {
+				margin-left: $value !important;
+			}
+			// Responsive Negative Margin
+			.-m-#{$prefix}-#{$name} {
+				margin: calc(#{$value} * -1) !important;
+			}
+			.-my-#{$prefix}-#{$name} {
+				margin-bottom: calc(#{$value} * -1) !important; // Alphabetical order
+				margin-top: calc(#{$value} * -1) !important;
+			}
+			.-mx-#{$prefix}-#{$name} {
+				margin-left: calc(#{$value} * -1) !important;
+				margin-right: calc(#{$value} * -1) !important;
+			}
+			.-mt-#{$prefix}-#{$name} {
+				margin-top: calc(#{$value} * -1) !important;
+			}
+			.-mr-#{$prefix}-#{$name} {
+				margin-right: calc(#{$value} * -1) !important;
+			}
+			.-mb-#{$prefix}-#{$name} {
+				margin-bottom: calc(#{$value} * -1) !important;
+			}
+			.-ml-#{$prefix}-#{$name} {
+				margin-left: calc(#{$value} * -1) !important;
+			}
+		}
+
+		// Responsive Padding
+		@each $name, $value in $spacing-scale {
+			.p-#{$prefix}-#{$name} {
+				padding: $value !important;
+			}
+			.py-#{$prefix}-#{$name} {
+				padding-bottom: $value !important; // Alphabetical order
+				padding-top: $value !important;
+			}
+			.px-#{$prefix}-#{$name} {
+				padding-left: $value !important;
+				padding-right: $value !important;
+			}
+			.pt-#{$prefix}-#{$name} {
+				padding-top: $value !important;
+			}
+			.pr-#{$prefix}-#{$name} {
+				padding-right: $value !important;
+			}
+			.pb-#{$prefix}-#{$name} {
+				padding-bottom: $value !important;
+			}
+			.pl-#{$prefix}-#{$name} {
+				padding-left: $value !important;
+			}
+		}
+
+		// Responsive Gap
+		@each $name, $value in $spacing-scale {
+			.gap-#{$prefix}-#{$name} {
+				gap: $value !important;
+			}
+		}
+	}
+}

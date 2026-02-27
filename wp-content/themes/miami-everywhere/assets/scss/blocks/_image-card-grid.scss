@@ -1,0 +1,132 @@
+/**
+ * Block: Image Card Grid (Custom ACF Block)
+ *
+ * Styles for the custom ACF block `acf/image-card-grid`.
+ *
+ * @package MiamiEverywhere
+ */
+
+.image-card-grid {
+	// Styles for the individual card component (can be shared if needed)
+	.card {
+		flex-direction: column;
+		justify-content: flex-end;
+		min-height: 450px;
+		overflow: hidden;
+		position: relative;
+
+		@media (min-width: $breakpoint-md) {
+			min-height: 560px;
+		}
+
+		&__image-wrapper {
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index: 1;
+		}
+
+		&__image {
+			height: 100%;
+			object-fit: cover;
+			object-position: top;
+			transition: transform 0.4s ease;
+			width: 100%;
+		}
+
+		// Responsive image positioning
+		@media (min-width: $breakpoint-lg) {
+			.card__image {
+				object-position: center;
+			}
+		}
+
+		&__overlay {
+			background: linear-gradient(
+				0deg,
+				rgba(0, 0, 0, 0.75) 0%,
+				rgba(0, 0, 0, 0.4) 40%,
+				rgba(0, 0, 0, 0) 75%
+			);
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			transition: background-color 0.3s ease;
+			width: 100%;
+			z-index: 2;
+		}
+
+		&__content {
+			color: var(--color-white);
+			max-width: 100%;
+			padding: var(--spacing-6);
+			position: relative;
+			z-index: 3;
+
+			@media (min-width: $breakpoint-md) {
+				max-width: 70%;
+			}
+
+			@media (min-width: $breakpoint-lg) {
+				max-width: 100%;
+			}
+		}
+
+		&__title {
+			color: inherit;
+			margin-bottom: var(--spacing-3);
+		}
+
+		&__description {
+			line-height: var(--line-height-normal);
+		}
+
+		// Hover effects
+		&:hover {
+			.card__image {
+				transform: scale(1.05);
+			}
+		}
+	}
+
+	// --- Responsive Overrides ---
+
+	// Base styles for even cards (Mobile Only Now)
+	.card:nth-child(even) {
+
+		.card__content {
+			text-align: right;
+		}
+		.card__cta {
+			justify-content: flex-end;
+		}
+
+		@media (min-width: $breakpoint-md) {
+			align-items: flex-end;
+
+			.card__content {
+				text-align: right;
+			}
+			.card__cta {
+				justify-content: flex-end;
+			}
+		}
+
+		// Override alignment for large screens and up
+		// (Reset card items and text/button)
+		@media (min-width: $breakpoint-lg) {
+			align-items: initial;
+
+			.card__content {
+				text-align: left;
+			}
+
+			.card__cta {
+				justify-content: flex-start;
+			}
+		}
+	}
+}

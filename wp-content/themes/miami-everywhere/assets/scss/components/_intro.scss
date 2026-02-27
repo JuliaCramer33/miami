@@ -1,0 +1,163 @@
+/**
+ * Component: Intro Section
+ *
+ * Styles for the introductory content section following the hero.
+ *
+ * @package MiamiEverywhere
+ */
+
+.intro {
+	background-color: var(--color-white);
+	padding: var(--spacing-16) 0;
+	position: relative;
+	z-index: 50;
+
+	// Inner container
+	&__inner {
+		display: flex;
+		// max-width defined at lg breakpoint
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: var(--spacing-10);
+		padding-right: var(--spacing-10);
+		position: relative;
+	}
+
+	// Icon column (hidden on mobile)
+	&__icon-wrapper {
+		display: none;
+		flex-shrink: 0;
+		min-height: 1px;
+		padding-bottom: var(--spacing-8);
+		position: relative;
+		width: 63px;
+
+		// Vertical line within icon wrapper
+		.vertical-line {
+			height: calc(100% + var(--spacing-12) + 1px);
+			left: 31.5px;
+			top: calc(var(--spacing-16) * -1);
+			transform: none;
+		}
+
+		// Target the icon class directly (not nested BEM)
+		.intro__line-end-icon {
+			bottom: 0;
+			display: block;
+			height: 15px;
+			left: 50%;
+			position: absolute;
+			transform: translateX(-50%);
+			width: 15px;
+		}
+	}
+
+	// Main text content area
+	&__text-container {
+		flex: 1;
+		margin-left: 0;
+	}
+
+	// Title within text container
+	&__title {
+		color: var(--color-primary);
+		font-family: var(--font-family-heading);
+		font-size: var(--font-size-5xl);
+		font-weight: var(--font-weight-normal);
+		letter-spacing: 0.25px;
+		line-height: var(--line-height-tight);
+		margin-bottom: var(--spacing-6);
+	}
+
+	// Content area within text container
+	&__content {
+		color: var(--color-neutral-800);
+		font-family: var(--font-family-freight-text);
+		font-size: var(--font-size-lg);
+		line-height: var(--line-height-normal);
+
+		p {
+			margin-bottom: var(--spacing-6);
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// CTA section within text container
+	&__cta {
+		margin-top: var(--spacing-8);
+
+		// Button style within CTA
+		.button {
+			align-items: center;
+			background-color: var(--color-primary);
+			border-radius: var(--radius-sm);
+			color: var(--color-white);
+			display: inline-flex;
+			font-weight: var(--font-weight-medium);
+			padding: var(--spacing-3) var(--spacing-6);
+			text-decoration: none;
+			transition: background-color var(--transition-normal);
+
+			&:hover {
+				background-color: var(--color-accent);
+			}
+		}
+	}
+
+	// --- Responsive Overrides ---
+
+	// Medium screens (Tablet) and up
+	@media (min-width: $breakpoint-md) {
+		// Tablet padding (80px)
+		padding: var(--spacing-20) 0;
+
+		&__inner {
+			padding-left: var(--spacing-16);
+			padding-right: var(--spacing-16);
+		}
+
+		&__icon-wrapper {
+			display: block;
+		}
+
+		&__text-container {
+			margin-left: var(--spacing-8);
+		}
+
+		&__title {
+			margin-bottom: var(--spacing-8);
+		}
+
+		&__content {
+			font-size: var(--font-size-xl);
+		}
+	}
+
+	// Large screens and up
+	@media (min-width: $breakpoint-lg) {
+		// Desktop padding (128px)
+		padding: var(--spacing-32) 0;
+
+		&__inner {
+			max-width: $breakpoint-xl;
+			padding-left: var(--spacing-20);
+			padding-right: var(--spacing-20);
+		}
+
+		// Apply Desktop H2 size
+		&__title {
+			font-size: var(--font-size-6xl);
+		}
+	}
+
+	// Extra-large screens and up
+	@media (min-width: $breakpoint-xl) {
+		&__inner {
+			padding-left: var(--spacing-32);
+			padding-right: var(--spacing-32);
+		}
+	}
+}

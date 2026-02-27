@@ -1,0 +1,103 @@
+{
+  "name": "miami-everywhere",
+  "version": "1.0.0",
+  "description": "Miami Everywhere WordPress theme",
+  "author": "Julia Cramer",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "WordPress",
+    "Theme"
+  ],
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "engines": {
+    "node": ">=18.14.2"
+  },
+  "devDependencies": {
+    "@10up/eslint-config": "4.1.1",
+    "@splidejs/splide": "^4.1.4",
+    "10up-toolkit": "^6.4.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "cpy-cli": "^5.0.0",
+    "eslint": "^8.57.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.5",
+    "npm-run-all": "^4.1.5",
+    "postcss-scss": "^4.0.9",
+    "prettier": "^3.5.3",
+    "stylelint": "^15.11.0",
+    "stylelint-scss": "^5.0.0"
+  },
+  "scripts": {
+    "start": "npx 10up-toolkit watch",
+    "watch": "npx 10up-toolkit watch",
+    "build": "run-s toolkit:build copy:images copy:icons copy:vendor:dist",
+    "toolkit:build": "npx 10up-toolkit build",
+    "copy:vendor:dist": "cpy \"assets/vendor/**/*\" \"dist/vendor\" --parents",
+    "copy:images": "cpy \"assets/images/**/*\" \"dist/images\" --parents",
+    "copy:icons": "cpy \"assets/icons/**/*\" \"dist/icons\" --parents",
+    "format:js": "npx prettier --write \"assets/js/**/*.js\"",
+    "format:scss": "npx prettier --write \"assets/scss/**/*.scss\"",
+    "format": "npm-run-all format:*",
+    "lint:style": "npx 10up-toolkit lint-style \"assets/scss/**/*.scss\"",
+    "lint:js": "npx 10up-toolkit lint-js \"assets/js/**/*.js\"",
+    "lint:php": "phpcs -d memory_limit=1024M --standard=WordPress . --report-width=200",
+    "lint": "npm-run-all -c lint:*",
+    "prepare": "husky"
+  },
+  "10up-toolkit": {
+    "entry": {
+      "main": "./assets/js/main.js",
+      "style": "./assets/scss/style.scss"
+    },
+    "devURL": "http://miami.local"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@10up/eslint-config",
+      "eslint-config-prettier"
+    ],
+    "root": true,
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "globals": {
+      "miamiAjax": "readonly"
+    },
+    "ignorePatterns": [
+      "/dist/**",
+      "/node_modules/**",
+      "/vendor/**"
+    ],
+    "rules": {
+      "max-len": "off",
+      "prettier/prettier": "off"
+    }
+  },
+  "lint-staged": {
+    "./assets/scss/**/*.scss": [
+      "npm run format:scss"
+    ],
+    "./assets/js/**/*.js": [
+      "npm run format:js"
+    ],
+    "*.php": [
+      "phpcs --standard=WordPress --report-width=200"
+    ]
+  },
+  "browserslist": [
+    "extends @wordpress/browserslist-config"
+  ]
+}

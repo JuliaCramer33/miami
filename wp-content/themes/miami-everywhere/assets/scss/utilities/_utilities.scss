@@ -1,0 +1,266 @@
+/**
+ * Utility: General
+ *
+ * Contains miscellaneous utility classes and helper styles.
+ *
+ * @package MiamiEverywhere
+ */
+
+
+/* Position */
+$positions: (
+	relative: relative,
+	absolute: absolute,
+	fixed: fixed,
+	sticky: sticky,
+	static: static,
+);
+
+@each $name, $value in $positions {
+	.#{$name} {
+		position: $value;
+	}
+}
+
+/* Position Values */
+$position-values: (
+	top: top,
+	right: right,
+	bottom: bottom,
+	left: left,
+);
+
+@each $name, $property in $position-values {
+	.#{$name}-0 {
+		#{$property}: 0;
+	}
+}
+
+/* Z-Index */
+$z-indices: (
+	0: 0,
+	10: 10,
+	20: 20,
+	30: 30,
+	40: 40,
+	50: 50,
+	auto: auto,
+);
+
+@each $name, $value in $z-indices {
+	.z-#{$name} {
+		z-index: $value;
+	}
+}
+
+/* Display */
+$displays: (
+	block: block,
+	inline-block: inline-block,
+	inline: inline,
+	hidden: none,
+	visible: block,
+);
+
+@each $name, $value in $displays {
+	.#{$name} {
+		display: $value;
+	}
+}
+
+/* Overflow */
+$overflows: (
+	auto: auto,
+	hidden: hidden,
+	scroll: scroll,
+);
+
+@each $name, $value in $overflows {
+	.overflow-#{$name} {
+		overflow: $value;
+	}
+
+	.overflow-x-#{$name} {
+		overflow-x: $value;
+	}
+
+	.overflow-y-#{$name} {
+		overflow-y: $value;
+	}
+}
+
+/* Width */
+$widths: (
+	full: 100%,
+	auto: auto,
+	screen: 100vw,
+	min: min-content,
+	max: max-content,
+);
+
+@each $name, $value in $widths {
+	.w-#{$name} {
+		width: $value;
+	}
+}
+
+/* Height */
+$heights: (
+	full: 100%,
+	auto: auto,
+	screen: 100vh,
+	min: min-content,
+	max: max-content,
+);
+
+@each $name, $value in $heights {
+	.h-#{$name} {
+		height: $value;
+	}
+}
+
+/* Border Radius */
+$radius-values: (
+	none: 0,
+	sm: $radius-sm,
+	default: $radius,
+	md: $radius-md,
+	lg: $radius-lg,
+	full: 9999px,
+);
+
+@each $size, $value in $radius-values {
+	.rounded-#{$size} {
+		border-radius: $value;
+	}
+
+	@each $direction, $property in $position-values {
+		.rounded-#{$direction}-#{$size} {
+			@if $direction == 't' {
+				border-top-left-radius: $value;
+				border-top-right-radius: $value;
+			} @else if $direction == 'r' {
+				border-bottom-right-radius: $value;
+				border-top-right-radius: $value;
+			} @else if $direction == 'b' {
+				border-bottom-left-radius: $value;
+				border-bottom-right-radius: $value;
+			} @else if $direction == 'l' {
+				border-bottom-left-radius: $value;
+				border-top-left-radius: $value;
+			}
+		}
+	}
+}
+
+/* Box Shadow */
+$shadows: (
+	none: none,
+	sm: $shadow-sm,
+	default: $shadow,
+	md: $shadow-md,
+	lg: $shadow-lg,
+	xl: $shadow-xl,
+);
+
+@each $size, $value in $shadows {
+	.shadow-#{$size} {
+		box-shadow: $value;
+	}
+}
+
+/* Visibility */
+$visibilities: (
+	visible: visible,
+	invisible: hidden,
+);
+
+@each $name, $value in $visibilities {
+	.#{$name} {
+		visibility: $value;
+	}
+}
+
+$opacities: (
+	0: 0,
+	25: 0.25,
+	50: 0.5,
+	75: 0.75,
+	100: 1,
+);
+
+@each $value, $opacity in $opacities {
+	.opacity-#{$value} {
+		opacity: $opacity;
+	}
+}
+
+/* Responsive Utilities */
+$breakpoints: (
+	sm: $breakpoint-sm,
+	md: $breakpoint-md,
+	lg: $breakpoint-lg,
+	xl: $breakpoint-xl,
+);
+
+@each $prefix, $breakpoint in $breakpoints {
+	@media (min-width: $breakpoint) {
+		@each $name, $value in $displays {
+			.#{$prefix}\:#{$name} {
+				display: $value;
+			}
+		}
+	}
+}
+
+// ==========================================================================
+// Image Utilities
+// ==========================================================================
+
+/* Circle Image Utility */
+.img-circle-styled {
+	background-color: var(--color-white); // Keep this to prevent red peeking through image content
+	box-sizing: border-box; // Important for consistent sizing
+	display: block;
+	height: 100%; // Ensure it fills container if container has fixed height
+	max-width: 100%;
+	object-fit: cover;
+	object-position: center;
+	width: 100%; // Ensure it fills container if container has fixed width
+}
+
+// Responsive Utilities Breakpoint Map (Import or Define)
+// Assuming $responsive-breakpoints is available from
+// an imported file like _variables or defined globally
+// If not, uncomment and use the definition below:
+
+$responsive-breakpoints: (
+	sm: $breakpoint-sm,
+	md: $breakpoint-md,
+	lg: $breakpoint-lg,
+	xl: $breakpoint-xl,
+	xxl: $breakpoint-2xl // Changed key from '2xl' to 'xxl'
+);
+
+
+// Generate Responsive Display Utilities
+@each $prefix, $breakpoint in $responsive-breakpoints {
+	@media (min-width: $breakpoint) {
+		// Add flex/grid here if they weren't already responsive
+		.d-#{$prefix}-flex {
+			display: flex !important;
+		}
+		.d-#{$prefix}-inline-flex {
+			display: inline-flex !important;
+		}
+		//.d-#{$prefix}-grid { display: grid !important; }
+		// Uncomment if grid utilities are needed
+
+		@each $name, $value in $displays {
+			// Use d-[prefix]-[value] naming convention
+			.d-#{$prefix}-#{$name} {
+				display: $value !important;
+			}
+		}
+	}
+}

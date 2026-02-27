@@ -1,0 +1,95 @@
+# Logs
+*.log
+debug.log
+
+# OS / Editor Files
+*~
+.idea/
+.vscode/
+*.code-workspace
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.bak
+*.swp
+*.orig
+*.scssc
+
+# === WP Core Files/Folders at ROOT to Ignore ===
+/wp-admin/
+/wp-includes/
+/index.php
+/license.txt
+/readme.html
+/wp-activate.php
+/wp-app.php
+/wp-atom.php
+/wp-blog-header.php
+/wp-comments-post.php
+/wp-commentsrss2.php
+/wp-config.php
+/wp-config-sample.php
+/wp-cron.php
+/wp-feed.php
+/wp-links-opml.php
+/wp-load.php
+/wp-login.php
+/wp-mail.php
+/wp-pass.php
+/wp-rdf.php
+/wp-register.php
+/wp-rss.php
+/wp-rss2.php
+/wp-settings.php
+/wp-signup.php
+/wp-trackback.php
+/xmlrpc.php
+# =========================================
+
+# Build Dependencies (within wp-content)
+wp-content/themes/**/node_modules/
+wp-content/plugins/**/node_modules/
+
+# Composer Dependencies (within wp-content)
+wp-content/themes/**/vendor/
+wp-content/plugins/**/vendor/
+wp-content/vendor/
+
+# Build Output (within wp-content)
+wp-content/themes/**/dist/
+wp-content/plugins/**/dist/
+wp-content/plugins/**/build/
+
+# WP Engine specific
+_wpeprivate/
+.smushit-status
+.gitattributes
+# wp-content/mysql.sql
+
+# WordPress Content ignores (within wp-content)
+wp-content/uploads/
+wp-content/blogs.dir/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/backups/
+wp-content/cache/
+# wp-content/mu-plugins/ # Ignore if platform managed
+# wp-content/advanced-cache.php
+# wp-content/object-cache.php
+# wp-content/wp-cache-config.php
+
+# Optional: Large Media Files
+# *.mp3
+# *.mov
+# *.avi
+# etc.
+
+# Local Development Specific
+local-xdebuginfo.php
+
+# Default WordPress Themes (within wp-content)
+wp-content/themes/twenty*/
+wp-content/themes/twentytwenty*/

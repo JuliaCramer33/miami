@@ -1,0 +1,151 @@
+/**
+ * Block: Featured Testimonial (Custom ACF Block)
+ *
+ * Styles for the custom ACF block `acf/featured-testimonial`.
+ *
+ * @package MiamiEverywhere
+ */
+
+.featured-testimonial {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	// --- Base Styles (Mobile & Tablet - Applies to ALL alignments) ---
+	&__quote-section {
+		align-items: center;
+		background-color: var(--color-primary);
+		color: var(--color-white);
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		justify-content: center;
+		padding: var(--spacing-12) var(--spacing-16);
+	}
+
+	&__quote-icon {
+		color: var(--color-white);
+		display: block;
+		height: 58px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 70px;
+
+		&--top {
+			margin-bottom: var(--spacing-6);
+		}
+
+		&--bottom {
+			margin-top: var(--spacing-6);
+		}
+	}
+
+	&__quote-text {
+		border: none;
+		box-sizing: border-box;
+		font-family: var(--font-family-freight-text);
+		font-size: var(--font-size-lg);
+		font-weight: var(--font-weight-normal);
+		letter-spacing: -0.36px;
+		line-height: var(--line-height-tight);
+		margin: 0 0 var(--spacing-8) 0;
+		max-width: none;
+		padding: 0;
+		text-align: left;
+		width: 100%;
+
+		p {
+			margin-bottom: var(--spacing-4);
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		@media (min-width: #{$breakpoint-md}) {
+			max-width: 60ch;
+		}
+	}
+
+	&__divider {
+		border: none;
+		border-top: 1px solid var(--color-white);
+		margin: 0 auto var(--spacing-8) auto;
+		opacity: 1;
+		width: 40%;
+	}
+
+	&__author-info {
+		align-items: center;
+		display: flex;
+		gap: var(--spacing-4);
+		justify-content: flex-start;
+	}
+
+	&__author-image {
+		align-items: center;
+		border: 2px solid var(--color-white);
+		border-radius: 50%;
+		box-shadow: var(--shadow-sm);
+		display: flex;
+		flex-shrink: 0;
+		height: 60px;
+		justify-content: center;
+		margin-bottom: 0;
+		overflow: hidden;
+		width: 60px;
+
+		.img-circle-styled {
+			border: none;
+			box-shadow: none;
+			height: 100%;
+			margin: 0;
+			width: 100%;
+		}
+	}
+
+	&__author-name {
+		color: var(--color-white);
+		font-family: var(--font-family-freight-text);
+		font-size: var(--font-size-3xl);
+		font-weight: var(--font-weight-normal);
+		line-height: var(--line-height-tight);
+		margin: 0;
+		text-align: left;
+	}
+
+	// --- Desktop Overrides (LG Breakpoint and up) ---
+	@media (min-width: #{$breakpoint-lg}) {
+		&:not(.is-fullwidth) {
+			.featured-testimonial__quote-text {
+				letter-spacing: -0.38px;
+			}
+		}
+
+		&.is-fullwidth {
+			.featured-testimonial__quote-section {
+				padding: var(--spacing-16);
+			}
+			.featured-testimonial__quote-text {
+				font-size: var(--font-size-4xl);
+			}
+			.featured-testimonial__author-name {
+				font-size: var(--font-size-4xl);
+			}
+			.featured-testimonial__divider {
+				width: 20%;
+			}
+			.featured-testimonial__quote-icon--top {
+				margin-bottom: var(--spacing-8);
+			}
+			.featured-testimonial__quote-icon--bottom {
+				margin-top: var(--spacing-8);
+			}
+		}
+	}
+}

@@ -1,0 +1,26 @@
+/**
+ * Vertical Line Component
+ *
+ * Styles for the vertical line that connects sections
+ *
+ * @package MiamiEverywhere
+ */
+
+.vertical-line {
+	height: 100%;
+	left: 31.5px;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	width: 1px;
+	z-index: 51;
+
+	&__inner {
+		background-color: var(--color-primary);
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 1px;
+	}
+}

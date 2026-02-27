@@ -1,0 +1,193 @@
+/**
+ * Utility: Flexbox
+ *
+ * Provides utility classes for Flexbox layouts
+ * and responsive flex classes.
+ *
+ * @package MiamiEverywhere
+ */
+
+// Flex Display
+.flex {
+	display: flex;
+}
+
+.inline-flex {
+	display: inline-flex;
+}
+
+// Flex Direction
+$flex-directions: (
+	'row': row,
+	'row-reverse': row-reverse,
+	'column': column,
+	'column-reverse': column-reverse,
+);
+
+@each $name, $value in $flex-directions {
+	.flex-#{$name} {
+		flex-direction: $value;
+	}
+}
+
+// Flex Wrap
+$flex-wraps: (
+	'wrap': wrap,
+	'nowrap': nowrap,
+	'wrap-reverse': wrap-reverse,
+);
+
+@each $name, $value in $flex-wraps {
+	.flex-#{$name} {
+		flex-wrap: $value;
+	}
+}
+
+// Flex Grow/Shrink
+$flex-grows: (
+	'1': 1,
+	'auto': auto,
+	'initial': initial,
+	'none': none,
+);
+
+@each $name, $value in $flex-grows {
+	.flex-#{$name} {
+		flex: $value;
+	}
+}
+
+// Flex Basis
+$flex-basis: (
+	'0': 0,
+	'auto': auto,
+	'full': 100%,
+);
+
+@each $name, $value in $flex-basis {
+	.basis-#{$name} {
+		flex-basis: $value;
+	}
+}
+
+
+// Alignment
+$align-items: (
+	'start': flex-start,
+	'end': flex-end,
+	'center': center,
+	'baseline': baseline,
+	'stretch': stretch,
+);
+
+@each $name, $value in $align-items {
+	.items-#{$name} {
+		align-items: $value;
+	}
+}
+
+$justify-content: (
+	'start': flex-start,
+	'end': flex-end,
+	'center': center,
+	'between': space-between,
+	'around': space-around,
+	'evenly': space-evenly,
+);
+
+@each $name, $value in $justify-content {
+	.justify-#{$name} {
+		justify-content: $value;
+	}
+}
+
+// Flex Gap - REMOVED (defined in _spacing.scss)
+// $flex-gaps: (...);
+// @each $name, $value in $flex-gaps { ... }
+
+// Self Alignment
+$self-align: (
+	'auto': auto,
+	'start': flex-start,
+	'end': flex-end,
+	'center': center,
+	'stretch': stretch,
+	'baseline': baseline,
+);
+
+@each $name, $value in $self-align {
+	.self-#{$name} {
+		align-self: $value;
+	}
+}
+
+// Flex Shrink
+$flex-shrink: (
+	'0': 0,
+	'1': 1,
+);
+
+@each $name, $value in $flex-shrink {
+	.shrink-#{$name} {
+		flex-shrink: $value;
+	}
+}
+
+// Flex Grow
+$flex-grow: (
+	'0': 0,
+	'1': 1,
+);
+
+@each $name, $value in $flex-grow {
+	.grow-#{$name} {
+		flex-grow: $value;
+	}
+}
+
+// Responsive Utilities Breakpoint Map (Import or Define)
+// Assuming $responsive-breakpoints is available from an imported
+//file like _variables or defined globally
+// If not, uncomment and use the definition below:
+
+$responsive-breakpoints: (
+	sm: $breakpoint-sm,
+	md: $breakpoint-md,
+	lg: $breakpoint-lg,
+	xl: $breakpoint-xl,
+	xxl: $breakpoint-2xl
+);
+
+// Generate Responsive Flexbox Utilities
+@each $prefix, $breakpoint in $responsive-breakpoints {
+	@media (min-width: $breakpoint) {
+
+		// Responsive Flex Wrap
+		@each $name, $value in $flex-wraps {
+			.flex-#{$prefix}-#{$name} {
+				flex-wrap: $value !important;
+			}
+		}
+
+		// Responsive Align Items
+		@each $name, $value in $align-items {
+			.items-#{$prefix}-#{$name} {
+				align-items: $value !important;
+			}
+		}
+
+		// Responsive Justify Content
+		@each $name, $value in $justify-content {
+			.justify-#{$prefix}-#{$name} {
+				justify-content: $value !important;
+			}
+		}
+
+		// Responsive Align Self
+		@each $name, $value in $self-align {
+			.self-#{$prefix}-#{$name} {
+				align-self: $value !important;
+			}
+		}
+	}
+}

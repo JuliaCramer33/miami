@@ -1,0 +1,31 @@
+/**
+ * Utility: Animations
+ *
+ * Reusable animation classes and keyframes.
+ *
+ * @package MiamiEverywhere
+ */
+
+.js-fade-in {
+  opacity: 0;
+  transform: translateY(20px); // Start slightly lower
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out; // Add transform to transition
+  will-change: opacity, transform; // Hint for performance
+}
+
+.js-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0); // Move to original position
+}
+
+// --- Specificity for Full Width --- //
+
+// Combine full-width centering with the initial animation offset
+.is-fullwidth.js-fade-in {
+  transform: translateX(-50%) translateY(20px);
+}
+
+// Combine full-width centering with the final animation state
+.is-fullwidth.js-fade-in.is-visible {
+  transform: translateX(-50%) translateY(0);
+}

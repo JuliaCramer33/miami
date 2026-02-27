@@ -1,0 +1,67 @@
+/**
+ * Base: Accessibility Overrides
+ *
+ * Base styles related to accessibility that might override defaults.
+ *
+ * @package MiamiEverywhere
+ */
+
+/* stylelint-disable stylistic/max-line-length */
+
+/* Focus styles */
+body:not(.user-is-tabbing) {
+	button:focus,
+	input:focus,
+	select:focus,
+	textarea:focus {
+		outline: none;
+	}
+}
+
+/* Keyboard focus styles */
+.user-is-tabbing {
+	a:focus,
+	button:focus,
+	input:focus,
+	select:focus,
+	textarea:focus,
+	[tabindex]:not([tabindex='-1']):focus {
+		outline: 3px solid var(--color-primary);
+		outline-offset: 2px;
+	}
+
+	/* Override for links in the primary-colored header */
+	.site-header a:focus {
+		outline-color: var(--color-white);
+	}
+
+	/* Override for links in the primary-colored main navigation (if different from site-header context) */
+	.main-navigation a:focus {
+		outline-color: var(--color-white);
+	}
+
+	/* Override for links in the footer, assuming it has a dark/red background */
+
+	/* Adjust .site-footer if your main footer wrapper has a different class or needs more specificity */
+	.site-footer a:focus {
+		outline-color: var(--color-white);
+	}
+}
+
+/* ARIA Hidden Elements */
+// Lots of exceptions for this, need to think about removal if causes problems.
+[aria-hidden='true']:not(.splide__slide):not(.testimonial-modal__quote-icon):not(.intro__line-end-icon):not(.featured-testimonial__quote-icon):not(.featured-testimonial__divider) {
+	display: none;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+}

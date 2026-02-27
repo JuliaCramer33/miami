@@ -1,0 +1,82 @@
+// Responsive Order & Flex Direction Utilities
+// Requires breakpoint variables from _variables.scss
+
+// Order Map (Start from smallest breakpoint)
+$breakpoints: (
+	sm: $breakpoint-sm,
+	md: $breakpoint-md,
+	lg: $breakpoint-lg,
+	xl: $breakpoint-xl,
+	'2xl': $breakpoint-2xl
+);
+
+// Max order number to generate (e.g., 5 means .order-1 to .order-5)
+$order-max: 5;
+
+// --- Flex Direction Utilities ---
+
+.flex-row-reverse {
+	flex-direction: row-reverse !important;
+}
+
+.flex-column-reverse {
+	flex-direction: column-reverse !important;
+}
+
+@each $name, $value in $breakpoints {
+	@media (min-width: #{$value}) {
+		.flex-#{$name}-row {
+			flex-direction: row !important;
+		}
+		.flex-#{$name}-column {
+			flex-direction: column !important;
+		}
+		.flex-#{$name}-row-reverse {
+			flex-direction: row-reverse !important;
+		}
+		.flex-#{$name}-column-reverse {
+			flex-direction: column-reverse !important;
+		}
+	}
+}
+
+// --- Order Utilities ---
+
+// Default Order (Mobile First)
+.order-first {
+	order: -1 !important;
+}
+
+.order-last {
+	order: $order-max + 1 !important; // Ensure it comes after numbered orders
+}
+
+@for $i from 1 through $order-max {
+	.order-#{$i} {
+		order: $i !important;
+	}
+}
+
+// Responsive Order
+@each $name, $value in $breakpoints {
+	@media (min-width: #{$value}) {
+		.order-#{$name}-first {
+			order: -1 !important;
+		}
+
+		.order-#{$name}-last {
+			order: $order-max + 1 !important;
+		}
+
+		// Reset to auto before applying specific order for this breakpoint
+		.order-#{$name}-auto {
+			order: 0 !important; // or auto, 0 is common for resetting
+		}
+
+		@for $i from 1 through $order-max {
+			.order-#{$name}-#{$i} {
+				order: $i !important;
+			}
+		}
+	}
+}

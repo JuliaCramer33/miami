@@ -1,0 +1,92 @@
+/**
+ * Utility: Colors
+ *
+ * Generates utility classes for text and background colors
+ * and status colors.
+ *
+ * @package MiamiEverywhere
+ */
+
+// Theme Colors
+$theme-colors: (
+	'primary': $color-primary,
+	'accent': $color-accent,
+	'black': $color-black,
+	'white': $color-white,
+	'warm-white': $color-warm-white,
+	'light-tan': $color-light-tan,
+	'medium-tan': $color-medium-tan,
+	'dark-tan': $color-dark-tan,
+	'medium-gray': $color-medium-gray,
+);
+
+// Status Colors
+$status-colors: (
+	'success': $color-success,
+	'warning': $color-warning,
+	'error': $color-error,
+	'info': $color-info,
+);
+
+// Background Colors
+@each $name, $color in $theme-colors {
+	.bg-#{$name} {
+		background-color: $color;
+	}
+}
+
+// Text Colors
+@each $name, $color in $theme-colors {
+	.text-#{$name} {
+		color: $color;
+	}
+}
+
+// Border Colors
+@each $name, $color in $theme-colors {
+	.border-#{$name} {
+		border-color: $color;
+	}
+}
+
+// Status Colors
+@each $name, $color in $status-colors {
+	.bg-#{$name} {
+		background-color: $color;
+	}
+
+	.text-#{$name} {
+		color: $color;
+	}
+
+	.border-#{$name} {
+		border-color: $color;
+	}
+}
+
+// Opacity Utilities
+$opacities: (
+	'0': 0,
+	'25': 0.25,
+	'50': 0.5,
+	'75': 0.75,
+	'100': 1,
+);
+
+@each $name, $value in $opacities {
+	.opacity-#{$name} {
+		opacity: $value;
+	}
+
+	.bg-opacity-#{$name} {
+		background-color: rgba(0, 0, 0, $value);
+	}
+
+	.text-opacity-#{$name} {
+		opacity: $value;
+	}
+
+	.border-opacity-#{$name} {
+		border-color: rgba(0, 0, 0, $value);
+	}
+}

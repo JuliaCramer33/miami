@@ -1,0 +1,91 @@
+/**
+ * Base Styles
+ *
+ * Global styles, box-sizing, body defaults.
+ *
+ * @package MiamiEverywhere
+ */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 100%;
+	scroll-behavior: smooth;
+	text-size-adjust: 100%;
+}
+
+body {
+	background-color: var(--color-background);
+	color: var(--color-text);
+	font-family: var(--font-family-base);
+	font-size: var(--font-size-base);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	line-height: var(--line-height-normal);
+	margin: 0;
+}
+
+/* Skip link */
+.skip-link {
+	background-color: var(--color-black);
+	color: var(--color-white);
+	font-weight: var(--font-weight-bold);
+	left: 50%;
+	padding: var(--spacing-4);
+	position: absolute;
+	transform: translateY(-100%);
+	transition: transform var(--transition-fast);
+	z-index: var(--z-30);
+
+	&:focus {
+		outline: 3px solid var(--color-accent);
+		transform: translateY(0%);
+	}
+}
+
+/* Basic link styling */
+a {
+	color: var(--color-primary);
+	text-decoration: underline;
+
+	&:hover,
+	&:focus {
+		color: var(--color-accent);
+		text-decoration: none;
+	}
+}
+
+/* Responsive media defaults */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+// ==========================================================================
+// Main Content Area Padding
+// ==========================================================================
+
+main,
+.site-main {
+	padding-top: 0;
+	position: relative;
+	z-index: 1;
+
+
+	// Apply padding below the breakpoint where header/title become fixed
+	@media (max-width: ($breakpoint-lg - 1px)) {
+		padding-top: calc(#{$header-height-fixed} + #{$site-title-height}); // 75px + 56px = 131px
+	}
+}

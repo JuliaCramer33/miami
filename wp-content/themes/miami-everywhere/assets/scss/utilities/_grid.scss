@@ -1,0 +1,175 @@
+/**
+ * Utility: Grid
+ *
+ * Provides utility classes for CSS Grid layouts (grid, grid-cols, gap, etc.).
+ *
+ * @package MiamiEverywhere
+ */
+
+// Grid Display
+.grid {
+	display: grid;
+}
+
+.inline-grid {
+	display: inline-grid;
+}
+
+// Grid Columns
+$grid-columns: (
+	'1': repeat(1, minmax(0, 1fr)),
+	'2': repeat(2, minmax(0, 1fr)),
+	'3': repeat(3, minmax(0, 1fr)),
+	'4': repeat(4, minmax(0, 1fr)),
+	'5': repeat(5, minmax(0, 1fr)),
+	'6': repeat(6, minmax(0, 1fr)),
+	'8': repeat(8, minmax(0, 1fr)),
+	'10': repeat(10, minmax(0, 1fr)),
+	'12': repeat(12, minmax(0, 1fr)),
+);
+
+@each $name, $value in $grid-columns {
+	.grid-cols-#{$name} {
+		grid-template-columns: $value;
+	}
+}
+
+// Grid Rows
+$grid-rows: (
+	'1': repeat(1, minmax(0, 1fr)),
+	'2': repeat(2, minmax(0, 1fr)),
+	'3': repeat(3, minmax(0, 1fr)),
+	'4': repeat(4, minmax(0, 1fr)),
+	'5': repeat(5, minmax(0, 1fr)),
+	'6': repeat(6, minmax(0, 1fr)),
+);
+
+@each $name, $value in $grid-rows {
+	.grid-rows-#{$name} {
+		grid-template-rows: $value;
+	}
+}
+
+// Grid Gap - REMOVED (defined in _spacing.scss)
+// $grid-gaps: (...);
+// @each $name, $value in $grid-gaps { ... }
+
+// Grid Column Span
+$column-spans: (
+	'2': 2,
+	'3': 3,
+	'4': 4,
+	'5': 5,
+	'6': 6,
+	'12': 12,
+);
+
+@each $name, $value in $column-spans {
+	.col-span-#{$name} {
+		grid-column: span $value / span $value;
+	}
+}
+
+// Grid Row Span
+$row-spans: (
+	'2': 2,
+	'3': 3,
+	'4': 4,
+	'5': 5,
+	'6': 6,
+);
+
+@each $name, $value in $row-spans {
+	.row-span-#{$name} {
+		grid-row: span $value / span $value;
+	}
+}
+
+// Grid Auto Flow
+.grid-flow-row {
+	grid-auto-flow: row;
+}
+
+.grid-flow-col {
+	grid-auto-flow: column;
+}
+
+.grid-flow-dense {
+	grid-auto-flow: dense;
+}
+
+// Grid Auto Columns/Rows
+.auto-cols-auto {
+	grid-auto-columns: auto;
+}
+
+.auto-cols-min {
+	grid-auto-columns: min-content;
+}
+
+.auto-cols-max {
+	grid-auto-columns: max-content;
+}
+
+.auto-cols-fr {
+	grid-auto-columns: minmax(0, 1fr);
+}
+
+.auto-rows-auto {
+	grid-auto-rows: auto;
+}
+
+.auto-rows-min {
+	grid-auto-rows: min-content;
+}
+
+.auto-rows-max {
+	grid-auto-rows: max-content;
+}
+
+.auto-rows-fr {
+	grid-auto-rows: minmax(0, 1fr);
+}
+
+// Grid Start/End
+@each $name, $value in $grid-columns {
+	.col-start-#{$name} {
+		grid-column-start: $value;
+	}
+
+	.col-end-#{$name} {
+		grid-column-end: $value;
+	}
+}
+
+@each $name, $value in $grid-rows {
+	.row-start-#{$name} {
+		grid-row-start: $value;
+	}
+
+	.row-end-#{$name} {
+		grid-row-end: $value;
+	}
+}
+
+/* Responsive Grid */
+$breakpoints: (
+	sm: $breakpoint-sm,
+	md: $breakpoint-md,
+	lg: $breakpoint-lg,
+	xl: $breakpoint-xl,
+);
+
+@each $prefix, $breakpoint in $breakpoints {
+	@media (min-width: $breakpoint) {
+		@for $i from 1 through 6 {
+			.#{$prefix}\:grid-cols-#{$i} {
+				grid-template-columns: repeat($i, minmax(0, 1fr));
+			}
+		}
+
+		.#{$prefix}\:grid-cols-12 {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+		}
+	}
+}

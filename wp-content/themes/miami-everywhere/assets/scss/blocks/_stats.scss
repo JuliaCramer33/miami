@@ -1,0 +1,102 @@
+/**
+ * Block: Stats (Custom ACF Block)
+ *
+ * Styles for the custom ACF block `acf/stats`.
+ *
+ * @package MiamiEverywhere
+ */
+
+.stats-block {
+	background-color: var(--color-primary);
+	border-radius: var(--radius-lg);
+	padding-bottom: var(--spacing-8);
+	padding-top: var(--spacing-8);
+
+	// Inner Content Container (holds columns)
+	> div {
+		background-color: var(--color-white);
+	}
+
+	// Image Column
+	&__image-col {
+		img {
+			display: block;
+			height: 100%;
+			object-fit: cover;
+			width: 100%;
+		}
+	}
+
+	// Stats Column
+	&__stats-col {
+		background-image: linear-gradient(
+			135deg,
+			var(--color-warm-white) 0%,
+			var(--color-warm-white) 50%,
+			var(--color-light-tan) 50%,
+			var(--color-light-tan) 100%
+		);
+		padding: var(--spacing-10);
+
+		@media (min-width: $breakpoint-lg) {
+			padding: var(--spacing-12) var(--spacing-16);
+		}
+	}
+
+	// Grid Container within Stats Column
+	&__items-grid {
+		align-items: start;
+		gap: var(--spacing-8);
+		height: 100%;
+
+		// Responsive gap - REQUIRES SCSS
+		@media (min-width: $breakpoint-md) {
+			gap: var(--spacing-12);
+		}
+	}
+
+	// Individual Stat Item
+	&__item {
+		&-title {
+			color: var(--color-black);
+			font-family: var(--font-family-heading);
+			font-size: var(--font-size-4xl);
+			font-weight: $font-weight-normal;
+			letter-spacing: 0.25px;
+			line-height: $line-height-tight;
+
+			@media (min-width: $breakpoint-md) {
+				font-size: var(--font-size-6xl);
+			}
+		}
+
+		&-blurb {
+			color: var(--color-black);
+			font-family: var(--font-family-freight-text);
+			font-size: var(--font-size-lg);
+			font-weight: var(--font-weight-normal);
+			letter-spacing: -0.38px;
+			line-height: var(--line-height-tight);
+
+			p {
+				margin-bottom: 0;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	@media (min-width: $breakpoint-lg) {
+		> div {
+			// Target the inner container
+			display: flex;
+			flex-direction: row;
+		}
+		&__image-col,
+		&__stats-col {
+			flex: 0 0 50%;
+		}
+	}
+}

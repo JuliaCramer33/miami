@@ -1,0 +1,129 @@
+/**
+ * Component: Gallery
+ *
+ * Styles for WordPress galleries, potentially including slider enhancements.
+ *
+ * @package MiamiEverywhere
+ */
+
+/* stylelint-disable stylistic/max-line-length */
+
+$gallery-container-selector: '.testimonial-modal__gallery-slider' !default;
+$gallery-item-selector: '.gallery-image-item' !default;
+
+.testimonial-modal__gallery-slider {
+	margin-top: var(--spacing-4);
+	min-height: 300px;
+	transition: opacity 0.3s ease-in-out;
+	width: 100%;
+
+	// Horizontal layout (non-slider)
+	&.gallery-is-horizontal {
+		display: flex;
+		gap: var(--spacing-4);
+		opacity: 1;
+		overflow-x: auto;
+
+		.gallery-image-item {
+			flex: 0 0 auto;
+			height: auto;
+			max-width: 250px;
+			width: auto;
+
+			img {
+				border-radius: var(--radius);
+				display: block;
+				height: auto;
+				max-width: 100%;
+			}
+		}
+	}
+
+	// Slider layout
+	&.gallery-is-slider {
+		opacity: 1;
+	}
+}
+
+.testimonial-modal {
+
+	&__gallery {
+		// Target the gallery container specifically when it's acting as a Splide container
+		&.splide {
+			background-color: var(--color-white);
+			opacity: 1;
+			padding: var(--spacing-8) 0;
+			width: 100%;
+		}
+	}
+
+	.splide__slide {
+		padding: 0 var(--spacing-2);
+
+		img {
+			border-radius: var(--radius);
+			display: block;
+			height: auto;
+			max-height: 400px;
+			object-fit: contain;
+			width: 100%;
+		}
+	}
+
+	.splide__arrows {
+		.splide__arrow {
+			background: none;
+			border: none;
+			height: 2em;
+			opacity: 1;
+			padding: 0;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 2em;
+			z-index: 1;
+
+			svg {
+				fill: var(--color-primary);
+				height: 1.5em;
+				width: 1.5em;
+			}
+
+			&:hover {
+				opacity: 0.7;
+			}
+
+			&:disabled {
+				opacity: 0.3;
+			}
+		}
+
+		// Specific positioning for prev/next
+		.splide__arrow--prev {
+			left: -1.5em;
+		}
+
+		.splide__arrow--next {
+			right: -1.5em;
+		}
+
+		@media (min-width: $breakpoint-md) {
+			left: -2.5em;
+			right: -2.5em;
+		}
+	}
+
+	.splide__pagination {
+		bottom: calc(var(--spacing-4) * -1);
+		.splide__pagination__page {
+			background-color: var(--color-medium-gray);
+			opacity: 0.5;
+
+			&.is-active {
+				background-color: var(--color-primary);
+				opacity: 1;
+				transform: scale(1.2);
+			}
+		}
+	}
+}

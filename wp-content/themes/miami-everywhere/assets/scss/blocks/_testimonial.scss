@@ -1,0 +1,350 @@
+/**
+ * Block: Testimonial (Custom ACF Block)
+ *
+ * Styles for the custom ACF block `acf/testimonial`.
+ *
+ * @package MiamiEverywhere
+ */
+
+// Import variables
+@import "../settings/variables";
+
+body.modal-open {
+	overflow: hidden;
+}
+
+.testimonial-modal {
+	background-color: var(--color-white);
+	inset: 0;
+	opacity: 0;
+	pointer-events: none;
+	position: fixed;
+	transition:
+		opacity 0.3s ease-in-out,
+		visibility 0.3s ease-in-out;
+	visibility: hidden;
+	z-index: 9998;
+
+	// State when the modal is open
+	&.is-open {
+		opacity: 1;
+		pointer-events: auto;
+		visibility: visible;
+	}
+
+	// Wrapper for the actual modal content
+	&__content-wrapper {
+		height: 100%;
+		overflow-y: auto;
+		position: relative;
+		width: 100%;
+		z-index: 10000;
+	}
+
+	// Header Bar Styles
+	&__header {
+		background-color: var(--color-primary);
+		height: var(--spacing-16);
+		position: sticky;
+		top: 0;
+		width: 100%;
+		z-index: 10001;
+	}
+
+	// Close button (Remains fixed to viewport)
+	&__close {
+		align-items: center;
+		background: none;
+		border: none;
+		color: var(--color-white);
+		cursor: pointer;
+		display: flex; // Use flex for text + icon
+		gap: var(--spacing-2); // Space between text and icon
+		line-height: 1; // Explicitly set for the flex container
+		opacity: 0.8;
+		padding: var(--spacing-3) var(--spacing-4); // Increased padding further
+		position: fixed;
+		right: var(--spacing-4);   // Adjusted for potentially wider button
+		top: var(--spacing-4);     // Adjusted for potentially taller button
+		transition: opacity var(--transition-fast);
+		z-index: 10002;
+
+		// Style for the text "Close"
+		span {
+			font-size: var(--font-size-base); // Increased font size
+			font-weight: var(--font-weight-medium);
+		}
+
+		svg {
+			display: block;
+			height: var(--spacing-6); // Increased icon size
+			width: var(--spacing-6);  // Increased icon size
+		}
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	// Section
+	.testimonial-modal__section {
+		padding-bottom: var(--spacing-6);
+		padding-top: var(--spacing-6);
+
+		@media (min-width: $breakpoint-lg) {
+			padding-bottom: var(--spacing-8);
+			padding-top: var(--spacing-8);
+		}
+
+		&.testimonial-modal__section--content {
+			padding-top: var(--spacing-16);
+		}
+
+		&.testimonial-modal__section--gallery {
+			padding-bottom: var(--spacing-16);
+		}
+
+		&.testimonial-modal__section--hero {
+			padding-top: var(--spacing-16);
+		}
+
+		&.testimonial-modal__section--quote {
+			padding-bottom: var(--spacing-16);
+		}
+	}
+
+	// Hero Image Container
+	&__hero-image {
+		aspect-ratio: 1238 / 648;
+		margin-bottom: 0;
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+
+		img {
+			display: block;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			width: 100%;
+		}
+	}
+
+	// Hero Meta block (Name, Class, Major, Minor)
+	&__hero-meta {
+		background-color: var(--color-white);
+		margin: -70px auto 0;
+		max-width: 90%;
+		padding: var(--spacing-8); // Mobile padding
+		position: relative;
+
+		@media (min-width: $breakpoint-md) {
+			max-width: 85%;
+			padding: var(--spacing-16) var(--spacing-20); // Tablet padding
+		}
+
+		@media (min-width: $breakpoint-lg) {
+			// Reapply original desktop padding
+			padding: var(--spacing-12) var(--spacing-20);
+		}
+
+		// Name heading
+		.testimonial-modal__hero-name {
+			color: var(--color-black);
+			font-size: var(--font-size-h2-mobile); // Base size (mobile)
+			font-weight: var(--font-weight-normal);
+			line-height: var(--line-height-normal); // Base line height
+			margin-bottom: var(--spacing-6);
+			margin-top: 0;
+
+			@media (min-width: $breakpoint-md) {
+				font-size: var(--font-size-h1-desktop); // Tablet+ size (80px)
+				line-height: var(--line-height-tight); // Adjust line height for large size
+			}
+		}
+
+		// Details List
+		.testimonial-modal__hero-details {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		// Detail List Item
+		li[class*='testimonial-modal__hero-detail--'] {
+			align-items: flex-start;
+			display: flex;
+			flex-direction: row;
+			font-size: var(--font-size-lg); // Base size (mobile 18px)
+			margin-bottom: var(--spacing-5);
+
+			@media (min-width: $breakpoint-md) {
+				align-items: center;
+				font-size: var(--font-size-2xl); // Tablet+ size (24px)
+			}
+
+			p {
+				display: inline; // Keep value on same line as label if possible
+				line-height: var(--line-height-tight);
+				margin: 0; // Remove default paragraph margin
+
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			// Icon using ::before
+			&::before {
+				align-self: flex-start; // Align icon to the top
+				background-color: transparent;
+				background-image: url('../images/icons/meta-icon.svg');
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				content: '';
+				display: inline-block;
+				flex-shrink: 0;
+				height: 1em; // Scales with font-size
+				margin-right: var(--spacing-2);
+				width: 1em; // Scales with font-size
+
+				@media (min-width: $breakpoint-md) {
+					align-self: center;
+					margin-right: var(--spacing-4);
+				}
+			}
+		}
+	}
+
+	// Main content body area
+	&__content-body {
+		p {
+			font-family: var(--font-family-freight-text);
+			// Base size (mobile/tablet)
+			font-size: var(--font-size-lg);
+			line-height: var(--line-height-normal); // Adjust base line-height
+		}
+	}
+
+	// Gallery slider container
+	&__gallery-slider {
+		width: 100%;
+
+		// Styles when the gallery is NOT a slider (few items)
+		&.gallery-is-horizontal {
+			align-items: center;     // Vertically align items
+			display: flex;
+			flex-wrap: wrap;         // Allow wrapping if needed
+			gap: 0.5rem;             // Match the gap from Splide options
+			justify-content: center; // Center items horizontally
+
+			// Ensure inner Splide structure doesn't interfere
+			.splide__track,
+			.splide__list {
+				overflow: visible;
+				width: auto;
+			}
+
+			// Reset item styles that might be slider-specific
+			.gallery-image-item { // Or use the actual item selector if different
+				// Reset or adjust width/flex properties if necessary
+				flex-basis: auto;
+				flex-shrink: 0;
+				margin: 0; // Reset any margins if Splide added them
+			}
+		}
+
+		// Styles when the gallery IS a slider (many items)
+		// No specific styles needed here unless overriding Splide's default CSS
+		// The .gallery-is-slider class mainly serves as a JS hook
+	}
+
+
+	// Quote content container
+	&__quote-content {
+		text-align: center;
+
+		blockquote {
+			border-left: none;
+			font-family: var(--font-family-freight-text);
+			font-size: var(--font-size-lg);
+			font-weight: var(--font-weight-extrabold);
+			line-height: var(--line-height-normal); // Adjust base line-height
+
+			p {
+				// Inherit size/line-height from blockquote now
+				margin-bottom: var(--spacing-4);
+			}
+		}
+	}
+
+	&__quote-icon {
+		margin: auto;
+	}
+
+	&__quote-cite {
+		font-family: var(--font-family-freight-text);
+		font-size: var(--font-size-2xl); // Base font size
+	}
+
+	// Responsive Overrides for Font Sizes
+	@media (min-width: $breakpoint-md) {
+		&__content-body p {
+			font-size: var(--font-size-2xl); // 24px for tablet
+			line-height: var(--line-height-normal); // 1.5 for tablet
+		}
+
+		&__quote-content blockquote {
+			font-size: var(--font-size-2xl); // 24px for tablet
+			line-height: var(--line-height-normal); // 1.5 for tablet
+		}
+	}
+
+	@media (min-width: $breakpoint-lg) {
+		&__content-body p {
+			font-size: var(--font-size-4xl); // 36px for desktop
+			line-height: var(--line-height-tight); // 1.25 for desktop (45px)
+		}
+
+		&__quote-content blockquote {
+			font-size: var(--font-size-4xl); // 36px for desktop
+			line-height: var(--line-height-tight); // 1.25 for desktop (45px)
+		}
+
+		.testimonial-modal__quote-cite {
+			font-size: var(--font-size-4xl); // Desktop font size
+			line-height: var(--line-height-tight);
+		}
+	}
+}
+
+// ==========================================================================
+// Adjustments for WP Admin Bar
+// ==========================================================================
+body.admin-bar {
+	.testimonial-modal {
+		&__header {
+			top: #{$wp-admin-bar-height-desktop};
+		}
+
+		// Adjust close button position when admin bar is present
+		&__close {
+			top: calc(var(--spacing-2) + #{$wp-admin-bar-height-desktop});
+		}
+	}
+
+	// Use variable for the WP Admin Bar breakpoint
+	@media screen and (max-width: $breakpoint-wp-admin) {
+		.testimonial-modal {
+			&__header {
+				top: #{$wp-admin-bar-height-mobile};
+			}
+
+			// Adjust close button for mobile admin bar
+			&__close {
+				top: calc(var(--spacing-2) + #{$wp-admin-bar-height-mobile});
+			}
+		}
+	}
+}
